@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'micalificacionunimagAPI'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_09316A1C66BE4B76BF24CBA36FD7CB8B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5EDA0988020C42DB932EF7BD06F430E4 }}
           package: '*.jar'
