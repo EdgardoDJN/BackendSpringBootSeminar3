@@ -28,15 +28,6 @@ public class WebSecurityConfig {
 
     @Autowired
     private AuthEntryPointJwt unauthorizationHandler;
-
-    private static final String[] AUTH_WHITELIST = {
-        // -- swagger ui
-        "/v2/api-docs",
-        "/v3/api-docs",  
-        "/swagger-resources/**", 
-        "/swagger-ui/**",
-        "/techgeeknext-openapi/**"
-         };
     
 
     @Bean
@@ -76,11 +67,10 @@ public class WebSecurityConfig {
         http.cors().and().csrf().disable()
             .exceptionHandling().authenticationEntryPoint(unauthorizationHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+            .authorizeRequests().antMatchers("/v3/api-docs/**","/configuration/ui","/swagger-resources/**","/swagger-ui/**","/configuration/security","/swagger-ui-custom.html/**","/webjars/**").permitAll()
+            .antMatchers("/api/auth/**").permitAll()
             .antMatchers("/api/v3/teachers/**").permitAll()
-            .antMatchers("/swagger-ui-custom/**").permitAll()
             .antMatchers("/api/v3/califications/**").permitAll()
-            //.antMatchers(AUTH_WHITELIST).permitAll()
             .anyRequest().authenticated();
 
         
