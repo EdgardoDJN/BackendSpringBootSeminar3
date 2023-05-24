@@ -67,10 +67,9 @@ public class WebSecurityConfig {
         http.cors().and().csrf().disable()
             .exceptionHandling().authenticationEntryPoint(unauthorizationHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers("/v3/api-docs/**","/configuration/ui","/swagger-resources/**","/swagger-ui/**","/configuration/security","/swagger-ui-custom.html/**","/webjars/**").permitAll()
-            .antMatchers("/api/auth/**").permitAll()
-            .antMatchers("/api/v3/teachers/**").permitAll()
-            .antMatchers("/api/v3/califications/**").permitAll()
+            .authorizeRequests()
+            .antMatchers("/v3/api-docs/**","/configuration/ui","/swagger-resources/**","/swagger-ui/**","/configuration/security","/swagger-ui-custom.html/**","/webjars/**").permitAll()
+            .antMatchers("/api/auth/**", "/api/v3/teachers/**", "/api/v3/califications/**").permitAll()
             .anyRequest().authenticated();
 
         
