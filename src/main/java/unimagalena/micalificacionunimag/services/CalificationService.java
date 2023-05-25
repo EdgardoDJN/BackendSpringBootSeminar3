@@ -10,5 +10,6 @@ public interface CalificationService {
     Optional<Calification> update(Long id, Calification calification);
     List<Calification> findAll();
     Optional<Calification> find(Long id);
+    List<Object[]> findByStudentAndTeacher(Long studentId, Long teacherId);
     void delete(Long id);
 }

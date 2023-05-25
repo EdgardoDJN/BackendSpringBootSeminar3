@@ -16,13 +16,6 @@ public class CalificationMapper {
         dto.setCalificacion(calification.getCalificacion());
         return dto;
     }
-    public static List<CalificationDTO> toCalificationDTOs(List<Calification> califications) {
-        List<CalificationDTO> dtos = new ArrayList<>();
-        califications.stream().forEach(calification -> {
-            dtos.add(toCalificationDTO(calification));
-        });
-        return dtos;
-    }
     public static Calification toCalification(CalificationDTO calificationDTO) {
         Calification calification = new Calification();
         calification.setTratoEstudiante(calificationDTO.getTratoEstudiante());

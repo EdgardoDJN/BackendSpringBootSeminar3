@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import unimagalena.micalificacionunimag.api.dto.CalificationDTO;
 import unimagalena.micalificacionunimag.api.dto.CalificationMapper;
+import unimagalena.micalificacionunimag.api.dto.StatisticsDTO2;
+import unimagalena.micalificacionunimag.api.dto.StatisticsMapper;
 import unimagalena.micalificacionunimag.entities.Calification;
 import unimagalena.micalificacionunimag.services.CalificationService;
 
@@ -32,7 +34,7 @@ public class CalificationController {
         this.calificationService = calificationService;
     }
 
-    @GetMapping("/califications")
+    /*@GetMapping("/califications")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN') or hasRole('TEACHER')")
     public ResponseEntity<List<CalificationDTO>> getAllCalifications()
     {
@@ -44,6 +46,7 @@ public class CalificationController {
             return ResponseEntity.ok(dto);
         }   
     }
+    */
     @GetMapping("/califications/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN') or hasRole('TEACHER')")
     public ResponseEntity<CalificationDTO> getCalificationById(@PathVariable Long id)
@@ -53,6 +56,18 @@ public class CalificationController {
             return ResponseEntity.noContent().build();
         else{
             CalificationDTO dto = CalificationMapper.toCalificationDTO(calification.get());
+            return ResponseEntity.ok(dto);
+        }
+    }
+    @GetMapping("/califications/student/{studentId}/teacher/{teacherId}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN') or hasRole('TEACHER')")
+    public ResponseEntity<List<StatisticsDTO2>> getCalificationByStudentAndTeacher(@PathVariable Long studentId, @PathVariable Long teacherId)
+    {
+        List<Object[]> califications = calificationService.findByStudentAndTeacher(studentId, teacherId);
+        if(califications.isEmpty())
+            return ResponseEntity.noContent().build();
+        else{
+            List<StatisticsDTO2> dto = StatisticsMapper.convertToStatisticsDto2(califications);
             return ResponseEntity.ok(dto);
         }
     }

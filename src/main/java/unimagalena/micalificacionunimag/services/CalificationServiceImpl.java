@@ -79,5 +79,10 @@ public class CalificationServiceImpl implements CalificationService {
     public void delete(Long id) {
         calificationRepository.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> findByStudentAndTeacher(Long studentId, Long teacherId) {
+        return calificationRepository.getTeacherStudentStatistics(teacherId, studentId);
+    }
     
 }
