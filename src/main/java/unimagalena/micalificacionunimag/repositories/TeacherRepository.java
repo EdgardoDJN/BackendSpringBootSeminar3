@@ -160,7 +160,7 @@ List<Object[]> findTeachers();
         "JOIN subject_teachers st ON st.teacher_id = t.id " +
         "JOIN subjects s ON s.id = st.subject_id " +
         "GROUP BY p.id, pr.name, s.name " +
-        "HAVING AVG(c.habilidad_explicacion) >=4.5 " +
+        "HAVING AVG(c.habilidad_explicacion) >=4 " +
         "ORDER BY HabilidadExplicacion DESC", nativeQuery = true)
 List<Object[]> findTeachersWithBestExplanationSkills();
 
@@ -180,7 +180,7 @@ List<Object[]> findTeachersWithBestExplanationSkills();
          "JOIN subject_teachers st ON st.teacher_id = t.id " +
          "JOIN subjects s ON s.id = st.subject_id " +
       "GROUP BY p.id, pr.name, s.name " +
-      "HAVING AVG(c.uso_tecnologia) >=4.5 " +
+      "HAVING AVG(c.uso_tecnologia) >=4 " +
       "ORDER BY UsoTecnologia DESC", nativeQuery = true)
 List<Object[]> findTeachersWithBestResultsInEducationalTechnology();
 
